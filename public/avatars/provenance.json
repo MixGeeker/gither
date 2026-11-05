@@ -1,0 +1,273 @@
+{
+  "fetchedAt": "2026-11-05T13:35:15.970265Z",
+  "purpose": "Authentic public GitHub repository owner avatars for Gither sample projects. These are organization avatars, not portraits of individual contributors.",
+  "method": "Owner avatar_url verified from official GitHub REST repository metadata through the connected GitHub API. Avatar bytes downloaded unchanged from that URL with s=128. Stars and forks are a dated snapshot, not live values.",
+  "avatars": {
+    "localsend": {
+      "avatar": "/avatars/localsend.png",
+      "ownerLogin": "localsend",
+      "ownerType": "Organization",
+      "ownerId": 120677616,
+      "ownerUrl": "https://github.com/localsend",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/120677616?v=4",
+      "stars": 97407,
+      "forks": 5531,
+      "fetchedAt": "2026-11-05T13:34:14.106Z",
+      "repositoryUrl": "https://github.com/localsend/localsend",
+      "metadataApiSource": "https://api.github.com/repos/localsend/localsend",
+      "file": "/avatars/localsend.png",
+      "format": "PNG",
+      "dimensions": [
+        128,
+        128
+      ],
+      "bytes": 4155,
+      "sha256": "af57658e512ce25d2a934c09331820592a25545dcac163247b02df089c3b5ab6",
+      "downloadUrl": "https://avatars.githubusercontent.com/u/120677616?v=4&s=128"
+    },
+    "excalidraw": {
+      "avatar": "/avatars/excalidraw.png",
+      "ownerLogin": "excalidraw",
+      "ownerType": "Organization",
+      "ownerId": 59452120,
+      "ownerUrl": "https://github.com/excalidraw",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/59452120?v=4",
+      "stars": 135204,
+      "forks": 16015,
+      "fetchedAt": "2026-11-05T13:34:14.650Z",
+      "repositoryUrl": "https://github.com/excalidraw/excalidraw",
+      "metadataApiSource": "https://api.github.com/repos/excalidraw/excalidraw",
+      "file": "/avatars/excalidraw.png",
+      "format": "PNG",
+      "dimensions": [
+        128,
+        128
+      ],
+      "bytes": 4509,
+      "sha256": "4effc4e0506b0edea087f82ec256688fa7f56a110dc3380d97cd0fa8bcf1935c",
+      "downloadUrl": "https://avatars.githubusercontent.com/u/59452120?v=4&s=128"
+    },
+    "bruno": {
+      "avatar": "/avatars/bruno.png",
+      "ownerLogin": "usebruno",
+      "ownerType": "Organization",
+      "ownerId": 114530840,
+      "ownerUrl": "https://github.com/usebruno",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/114530840?v=4",
+      "stars": 48198,
+      "forks": 3085,
+      "fetchedAt": "2026-11-05T13:34:14.645Z",
+      "repositoryUrl": "https://github.com/usebruno/bruno",
+      "metadataApiSource": "https://api.github.com/repos/usebruno/bruno",
+      "file": "/avatars/bruno.png",
+      "format": "PNG",
+      "dimensions": [
+        128,
+        128
+      ],
+      "bytes": 6060,
+      "sha256": "b8d13fe88971d99491dd19d79844c6a67bcfdb1a39489439f68db4193f1f9837",
+      "downloadUrl": "https://avatars.githubusercontent.com/u/114530840?v=4&s=128"
+    },
+    "openwebui": {
+      "avatar": "/avatars/openwebui.png",
+      "ownerLogin": "open-webui",
+      "ownerType": "Organization",
+      "ownerId": 158137808,
+      "ownerUrl": "https://github.com/open-webui",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/158137808?v=4",
+      "stars": 157838,
+      "forks": 22945,
+      "fetchedAt": "2026-11-05T13:34:14.590Z",
+      "repositoryUrl": "https://github.com/open-webui/open-webui",
+      "metadataApiSource": "https://api.github.com/repos/open-webui/open-webui",
+      "file": "/avatars/openwebui.png",
+      "format": "PNG",
+      "dimensions": [
+        128,
+        128
+      ],
+      "bytes": 16515,
+      "sha256": "2256df010e1aa340004409688f324d940e9549a1b8e9ce22049dee15bc9b7f2b",
+      "downloadUrl": "https://avatars.githubusercontent.com/u/158137808?v=4&s=128"
+    },
+    "immich": {
+      "avatar": "/avatars/immich.png",
+      "ownerLogin": "immich-app",
+      "ownerType": "Organization",
+      "ownerId": 109746326,
+      "ownerUrl": "https://github.com/immich-app",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/109746326?v=4",
+      "stars": 118299,
+      "forks": 7487,
+      "fetchedAt": "2026-11-05T13:34:14.593Z",
+      "repositoryUrl": "https://github.com/immich-app/immich",
+      "metadataApiSource": "https://api.github.com/repos/immich-app/immich",
+      "file": "/avatars/immich.png",
+      "format": "PNG",
+      "dimensions": [
+        128,
+        128
+      ],
+      "bytes": 5685,
+      "sha256": "e96adf650c68560e782c85bf720a17ded44af5d3deabc8ec8caa62efb08f08f0",
+      "downloadUrl": "https://avatars.githubusercontent.com/u/109746326?v=4&s=128"
+    },
+    "plane": {
+      "avatar": "/avatars/plane.png",
+      "ownerLogin": "makeplane",
+      "ownerType": "Organization",
+      "ownerId": 115727700,
+      "ownerUrl": "https://github.com/makeplane",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/115727700?v=4",
+      "stars": 62012,
+      "forks": 6301,
+      "fetchedAt": "2026-11-05T13:34:14.558Z",
+      "repositoryUrl": "https://github.com/makeplane/plane",
+      "metadataApiSource": "https://api.github.com/repos/makeplane/plane",
+      "file": "/avatars/plane.png",
+      "format": "PNG",
+      "dimensions": [
+        128,
+        128
+      ],
+      "bytes": 2723,
+      "sha256": "d437feeb0eb3284ac0938cc2e2605b0edb7a0db104ce53ec1e075b7520844cc6",
+      "downloadUrl": "https://avatars.githubusercontent.com/u/115727700?v=4&s=128"
+    },
+    "pocketbase": {
+      "avatar": "/avatars/pocketbase.png",
+      "ownerLogin": "pocketbase",
+      "ownerType": "Organization",
+      "ownerId": 101000011,
+      "ownerUrl": "https://github.com/pocketbase",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/101000011?v=4",
+      "stars": 61607,
+      "forks": 3765,
+      "fetchedAt": "2026-11-05T13:34:14.627Z",
+      "repositoryUrl": "https://github.com/pocketbase/pocketbase",
+      "metadataApiSource": "https://api.github.com/repos/pocketbase/pocketbase",
+      "file": "/avatars/pocketbase.png",
+      "format": "PNG",
+      "dimensions": [
+        128,
+        128
+      ],
+      "bytes": 1248,
+      "sha256": "0f902ecce7991e14a3b5ea620437cedaf2aa3b610c6cc33608a748c8d97f108b",
+      "downloadUrl": "https://avatars.githubusercontent.com/u/101000011?v=4&s=128"
+    },
+    "flowise": {
+      "avatar": "/avatars/flowise.png",
+      "ownerLogin": "FlowiseAI",
+      "ownerType": "Organization",
+      "ownerId": 128289781,
+      "ownerUrl": "https://github.com/FlowiseAI",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/128289781?v=4",
+      "stars": 55554,
+      "forks": 25081,
+      "fetchedAt": "2026-11-05T13:34:14.922Z",
+      "repositoryUrl": "https://github.com/FlowiseAI/Flowise",
+      "metadataApiSource": "https://api.github.com/repos/FlowiseAI/Flowise",
+      "file": "/avatars/flowise.png",
+      "format": "PNG",
+      "dimensions": [
+        128,
+        128
+      ],
+      "bytes": 10920,
+      "sha256": "c7da8a1765fbf466181c63b43f6d3a798fcb5ff58aaea4a1d771423d6ef57e15",
+      "downloadUrl": "https://avatars.githubusercontent.com/u/128289781?v=4&s=128"
+    },
+    "twenty": {
+      "avatar": "/avatars/twenty.png",
+      "ownerLogin": "twentyhq",
+      "ownerType": "Organization",
+      "ownerId": 119600397,
+      "ownerUrl": "https://github.com/twentyhq",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/119600397?v=4",
+      "stars": 60490,
+      "forks": 9965,
+      "fetchedAt": "2026-11-05T13:34:14.681Z",
+      "repositoryUrl": "https://github.com/twentyhq/twenty",
+      "metadataApiSource": "https://api.github.com/repos/twentyhq/twenty",
+      "file": "/avatars/twenty.png",
+      "format": "PNG",
+      "dimensions": [
+        128,
+        128
+      ],
+      "bytes": 2934,
+      "sha256": "29da23b564c017e29414dcad42f4b5c86c5654a3b035e848d4c49870974ec3df",
+      "downloadUrl": "https://avatars.githubusercontent.com/u/119600397?v=4&s=128"
+    },
+    "hoppscotch": {
+      "avatar": "/avatars/hoppscotch.png",
+      "ownerLogin": "hoppscotch",
+      "ownerType": "Organization",
+      "ownerId": 56705483,
+      "ownerUrl": "https://github.com/hoppscotch",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/56705483?v=4",
+      "stars": 80755,
+      "forks": 6227,
+      "fetchedAt": "2026-11-05T13:34:14.854Z",
+      "repositoryUrl": "https://github.com/hoppscotch/hoppscotch",
+      "metadataApiSource": "https://api.github.com/repos/hoppscotch/hoppscotch",
+      "file": "/avatars/hoppscotch.png",
+      "format": "PNG",
+      "dimensions": [
+        128,
+        128
+      ],
+      "bytes": 11955,
+      "sha256": "f3820ed49ed9ed405328e09fb8200c265de98f91d693d3f7f64dd45ef7368afa",
+      "downloadUrl": "https://avatars.githubusercontent.com/u/56705483?v=4&s=128"
+    },
+    "appflowy": {
+      "avatar": "/avatars/appflowy.png",
+      "ownerLogin": "AppFlowy-IO",
+      "ownerType": "Organization",
+      "ownerId": 86002201,
+      "ownerUrl": "https://github.com/AppFlowy-IO",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/86002201?v=4",
+      "stars": 78231,
+      "forks": 6180,
+      "fetchedAt": "2026-11-05T13:34:14.607Z",
+      "repositoryUrl": "https://github.com/AppFlowy-IO/AppFlowy",
+      "metadataApiSource": "https://api.github.com/repos/AppFlowy-IO/AppFlowy",
+      "file": "/avatars/appflowy.png",
+      "format": "PNG",
+      "dimensions": [
+        128,
+        128
+      ],
+      "bytes": 4257,
+      "sha256": "f52754349fd818283faddf2b350b96ce63e70e21866f4937d97215953b952969",
+      "downloadUrl": "https://avatars.githubusercontent.com/u/86002201?v=4&s=128"
+    },
+    "calcom": {
+      "avatar": "/avatars/calcom.png",
+      "ownerLogin": "calcom",
+      "ownerType": "Organization",
+      "ownerId": 79145102,
+      "ownerUrl": "https://github.com/calcom",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/79145102?v=4",
+      "stars": 49708,
+      "forks": 15539,
+      "fetchedAt": "2026-11-05T13:35:08.409Z",
+      "repositoryUrl": "https://github.com/calcom/cal.diy",
+      "metadataApiSource": "https://api.github.com/repos/calcom/cal.diy",
+      "originalRepositoryUrl": "https://github.com/calcom/cal.com",
+      "redirectNote": "Original calcom/cal.com repository redirects to calcom/cal.diy (repository ID 350360184).",
+      "file": "/avatars/calcom.png",
+      "format": "PNG",
+      "dimensions": [
+        128,
+        128
+      ],
+      "bytes": 17531,
+      "sha256": "692fc8fd644ebd1ae921a5e763ab30be64daef3655b6972b1156de78864a3787",
+      "downloadUrl": "https://avatars.githubusercontent.com/u/79145102?v=4&s=128"
+    }
+  }
+}

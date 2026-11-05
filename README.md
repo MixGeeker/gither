@@ -52,7 +52,7 @@ Scheduled trigger → GitHub/Show HN source adapters → queue → normalize and
 - Login/register UI calls the real same-origin auth status endpoint and stays unavailable when no backend is connected. No fake login or password collection.
 - Separate Better Auth 1.7.17 + native D1 Worker foundation, with reviewed migration, provider security controls and local workerd/D1 tests. It is NOT deployed or configured with real OAuth credentials. OAuth first login can register an account once configured; email/password remains disabled pending verified email delivery.
 
-Commands: `npm run check`, `npm run auth:check`, `npm test` (28 checks), `npm run build`, `npm run auth:smoke`. The last command only dry-bundles and tests locally; it does not deploy.
+Commands: `npm run check`, `npm run auth:check`, `npm test` (31 checks), `npm run build`, `npm run auth:smoke`. The last command only dry-bundles and tests locally; it does not deploy.
 
 See [auth setup and security](docs/auth-backend.md) and [phase-two boundaries](docs/phase-two.md).
 
@@ -61,3 +61,7 @@ See [auth setup and security](docs/auth-backend.md) and [phase-two boundaries](d
 GitHub Primer color values are reused from official current tokens. The UI uses Material 3 web shape, state and type guidance with a compact mobile layout, icon actions and no decorative slogans. No GitHub/Google brand assets or affiliation are implied. See [design sources and mappings](docs/design-system.md). Legacy theme IDs are retained internally so stored favorites and preferences remain compatible.
 
 OAuth implementation is paused at the user's request. Google/GitHub login has no visible entry point and no runtime requests in the app. `src/AuthPanel.tsx` and `worker/` remain isolated extension scaffolding only, disabled and undeployed.
+
+The discovery screen is card-first with no app header or logo. Search/filter and More are bottom-navigation sheets; the large card, primary swipe actions and navigation fit a phone viewport with safe-area padding.
+
+Cards now use a black Polaroid frame with a wider GitHub identity footer, genuine repository-owner avatars and dated Star/Fork counts. `src/github-metadata.json` and `public/avatars/provenance.json` record official source URLs and collection time. Counts are snapshots, not live. The code-rain graphic is decorative, not repository source or agent activity, and becomes static under reduced motion. The Cal.com sample now links to the canonical `calcom/cal.diy` repository after a verified redirect.

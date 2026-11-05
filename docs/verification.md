@@ -51,3 +51,19 @@ No live ingestion, account synchronization, backend, D1, or local Agent connecti
 - Page scrollWidth equals clientWidth (388): no horizontal page overflow. Save-action row ends at y641, before bottom navigation begins at y650: all four primary actions are visible on the first screen.
 - Save and Undo verified on the mobile layout; theme changes preserve favorites.
 - Login entry removed at user request. Auth scaffolding remains isolated, disabled and undeployed; no credentials or Cloudflare resources were created.
+
+## Header-free card-first revision
+
+- 29 tests and strict TS7 production build passed.
+- Real cloud-browser viewports 400×726 and 333×605 CSS px: page scroll dimensions equal viewport dimensions; no page overflow. On short screens the card body can scroll without moving the primary actions.
+- At 400×726, card bounds x12/y12, 376×550: about 76% of viewport height. Actions end at y654 and the 72px bottom navigation begins at y654. No app header/logo/search/filter/sort/title occupies the top.
+- Search opens from bottom navigation, returns Bruno for `bruno`, and reset restores the 12-item sample set. Right-drag saves a project and Undo restores it. More opens appearance and install options.
+- Native device safe-area insets are supported via env() and viewport-fit=cover. Physical notched-device testing was not performed.
+
+## Polaroid / iPhone 16 Pro Max revision
+
+- Exact logical viewport verified by DOM: 440×956 CSS px, page scroll width/height 440×956, no page overflow. Browser screenshot matches that rectangle. This is cloud-browser layout simulation, not an iPhone/Safari or DPR3 hardware capture.
+- Card is 416×780 at x12/y12 (82% of screen height); black identity footer is 116px high. Actions occupy y800–884; navigation starts at y884. No overlap.
+- Bruno avatar rendered with naturalWidth128 from verified local GitHub avatar. Star/Fork counts match dated official API metadata; visible snapshot date and source link included.
+- Decorative code-rain strip is separated from text/identity; reduced-motion has a static fallback.
+- 31 automated tests and strict TypeScript 7 production build pass. PWA precaches the 12 verified public avatars alongside the app shell (21 static paths total); auth and private APIs remain excluded.
