@@ -29,3 +29,16 @@ Browser extension metadata errors appeared in the console; no application-origin
 ## Boundaries
 
 No live ingestion, account synchronization, backend, D1, or local Agent connection is implemented. Project summaries are static examples; favorites and theme are local to the browser and origin.
+
+## Phase 2 verification
+
+- Frontend and auth Worker strict TS7 checks pass.
+- 26 automated tests pass: 9 original, 6 sharing/PWA, 11 authentication/security.
+- Production frontend build and service-worker generation pass.
+- Better Auth Worker dry-run build and actual local workerd/D1 smoke test pass; no production resource was created.
+- Browser-generated PNG was downloaded and visually inspected at 1200×1500.
+- List sharing begins with no selected items and a disabled copy button; selecting one of two saved projects produced a URL containing only that project.
+- Opening that URL displayed only the selected item without changing the saved count.
+- Stopping the preview origin produced curl exit 7; reloading the browser still rendered the cached app and saved count.
+- Unconfigured login and registration display clear unavailable states with disabled provider controls.
+- Full provider consent/token exchange, real email delivery, production D1 and physical PWA installation are not verified.

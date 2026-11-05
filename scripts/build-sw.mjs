@@ -1,0 +1,9 @@
+import {readdir,readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {isSensitiveRequest} from './cache-policy.mjs';
+const assets=(await readdir('dist/assets')).map(x=>'/assets/'+x);
+const shell=['/','/index.html','/manifest.webmanifest','/icon.svg',...assets];
+for(const optional of ['icon-192.png','icon-512.png','apple-touch-icon.png']){try{await readFile('dist/'+optional);shell.push('/'+optional)}catch{}}
+const revision=createHash('sha256').update(await readFile('dist/index.html')).update(shell.join('|')).digest('hex').slice(0,12);
+const sw=`// Generated app-shell-only cache. Never cache identity, callbacks, sessions, or private APIs.\nconst CACHE='gither-shell-${revision}';\nconst SHELL=${JSON.stringify(shell)};\nconst STATIC=new Set(SHELL);\n${isSensitiveRequest.toString()}\nself.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL))));\nself.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('gither-shell-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));\nself.addEventListener('message',event=>{if(event.data==='SKIP_WAITING')self.skipWaiting()});\nself.addEventListener('fetch',event=>{const req=event.request,url=new URL(req.url);if(req.method!=='GET'||url.origin!==self.location.origin||isSensitiveRequest(url))return;if(req.mode==='navigate'){event.respondWith(fetch(req).catch(()=>caches.open(CACHE).then(cache=>cache.match('/index.html'))));return}if(STATIC.has(url.pathname)){event.respondWith(caches.open(CACHE).then(async cache=>(await cache.match(url.pathname))||fetch(req)))} });\n`;
+await writeFile('dist/sw.js',sw);console.log('PWA app shell:',revision,shell.length,'static assets; auth/API excluded');

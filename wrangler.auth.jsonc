@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "gither-auth",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-11-05",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "vars": { "AUTH_ENABLED": "false" }
+  // No deployed route, D1 resource, provider credentials or secrets are configured.
+  // After explicit infrastructure approval, add a DB binding with migrations_dir: "migrations"
+  // and a route for the SAME frontend origin: https://your-domain.example/api/auth/*.
+}

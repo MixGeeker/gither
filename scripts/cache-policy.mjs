@@ -1,0 +1,1 @@
+export function isSensitiveRequest(url){return url.pathname.startsWith('/api/')||url.pathname.startsWith('/auth')||url.pathname.includes('/callback')||['code','state','access_token','id_token','session_token'].some(key=>url.searchParams.has(key));}

@@ -23,7 +23,7 @@ Run `npm ci`, then `npm run dev`. For a production bundle run `npm run build`; d
 
 ## Verify
 
-Run `npm run check` for strict TypeScript 7 validation, `npm test` for nine state/data/accessibility tests, and `npm run build` for the production bundle. `npx tsc --version` reports 7.0.2.
+Run `npm run check` for strict TypeScript 7 validation, `npm test` for the complete state/data/security test suite, and `npm run build` for the production bundle. `npx tsc --version` reports 7.0.2.
 
 ## Deploy to Cloudflare Pages
 
@@ -42,3 +42,16 @@ Favorites stay on the current browser and origin and do not sync across devices.
 ## Future discovery pipeline (not implemented)
 
 Scheduled trigger → GitHub/Show HN source adapters → queue → normalize and deduplicate → D1 candidate store → review/publish → read-only search API. An optional local Agent may later search or rerank through a secure pairing flow. None of these services is connected in this prototype; no background discovery or preference learning runs.
+
+## Phase 2: PWA, sharing, and auth foundation
+
+- Installable PWA manifest with generated 192/512px icons and an Apple touch icon.
+- Build-time service worker caches only the app shell and bundled sample data. Auth, callbacks, sessions, tokens and private APIs are explicitly excluded. Updates require the user to choose the update button.
+- Project links open that project. Shared-list links contain only explicitly selected project IDs and a title; no favorites are shared by default or automatically imported by the recipient.
+- Native system sharing when supported; copy-link and 1200×1500 PNG card download fallbacks. Generated links retain the host's access policy; a private preview does not become public because a link is shared.
+- Login/register UI calls the real same-origin auth status endpoint and stays unavailable when no backend is connected. No fake login or password collection.
+- Separate Better Auth 1.7.17 + native D1 Worker foundation, with reviewed migration, provider security controls and local workerd/D1 tests. It is NOT deployed or configured with real OAuth credentials. OAuth first login can register an account once configured; email/password remains disabled pending verified email delivery.
+
+Commands: `npm run check`, `npm run auth:check`, `npm test` (26 checks), `npm run build`, `npm run auth:smoke`. The last command only dry-bundles and tests locally; it does not deploy.
+
+See [auth setup and security](docs/auth-backend.md) and [phase-two boundaries](docs/phase-two.md).

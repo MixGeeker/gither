@@ -5,3 +5,7 @@ node_modules/
 
 .test-dist/
 dist/
+.dev.vars*
+!.dev.vars.example
+.wrangler/
+.auth-dist/

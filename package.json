@@ -1,1 +1,31 @@
-{"name":"gither","version":"1.0.0","private":true,"type":"module","description":"Project discovery with React, TypeScript 7, and three design systems","scripts":{"dev":"vite --host 0.0.0.0 --port 4173","build":"tsc --noEmit && vite build","check":"tsc --noEmit","test":"tsc -p tsconfig.test.json && node --test tests/*.test.mjs"},"dependencies":{"react":"19.3.1","react-dom":"19.3.1"},"devDependencies":{"@types/react":"19.3.0","@types/react-dom":"19.3.0","typescript":"7.0.2","vite":"8.3.6"}}
+{
+  "name": "gither",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Project discovery with React, TypeScript 7, and three design systems",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 4173",
+    "build": "tsc --noEmit && vite build && node scripts/build-sw.mjs",
+    "check": "tsc --noEmit",
+    "test": "tsc -p tsconfig.test.json && tsc -p tsconfig.worker.json --noEmit false --rootDir worker --outDir .auth-dist && node --test tests/*.test.mjs",
+    "auth:check": "tsc -p tsconfig.worker.json",
+    "auth:build": "node scripts/build-auth.mjs",
+    "icons": "node scripts/generate-icons.mjs",
+    "auth:smoke": "npm run auth:build && node scripts/auth-d1-smoke.mjs"
+  },
+  "dependencies": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "better-auth": "1.7.17"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.6",
+    "wrangler": "4.158.0",
+    "@cloudflare/workers-types": "5.20261104.1",
+    "@resvg/resvg-js": "2.6.2"
+  }
+}
