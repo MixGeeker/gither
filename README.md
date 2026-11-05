@@ -52,7 +52,7 @@ Scheduled trigger → GitHub/Show HN source adapters → queue → normalize and
 - Login remains disabled at the user’s request. No visible login/register entry, runtime auth request or password collection.
 - Separate Better Auth 1.7.17 + native D1 Worker foundation, with reviewed migration, provider security controls and local workerd/D1 tests. It is NOT deployed or configured with real OAuth credentials. OAuth first login can register an account once configured; email/password remains disabled pending verified email delivery.
 
-Commands: `npm run check`, `npm run auth:check`, `npm test` (37 checks), `npm run build`, `npm run auth:smoke`. The last command only dry-bundles and tests locally; it does not deploy.
+Commands: `npm run check`, `npm run auth:check`, `npm test` (38 checks), `npm run build`, `npm run auth:smoke`. The last command only dry-bundles and tests locally; it does not deploy.
 
 See [auth setup and security](docs/auth-backend.md) and [phase-two boundaries](docs/phase-two.md).
 
@@ -68,6 +68,8 @@ Cards now use a black Polaroid frame with a wider GitHub identity footer, genuin
 
 ## Card and interaction refinement
 
-Project purpose is presented as an explicitly labeled editorial text cover, not a fabricated product screenshot. Dark mode uses semantic dark surfaces throughout. The black identity footer is 164px high on tall phones, with narrower responsive variants. Code rain is a low-opacity background and respects reduced motion.
+Project purpose is presented as an explicitly labeled editorial text cover, not a fabricated product screenshot. Dark mode uses semantic dark surfaces throughout. The black identity footer has a compact 124px minimum height (120px on shorter screens) and can grow for wrapped identities. Code rain is a low-opacity background and respects reduced motion.
 
 Search distinguishes all matching projects from the remaining discovery queue. “View all” includes saved and dismissed matches. Replay restores only the dismissed matches under the current filters and is undoable. Feedback occupies a fixed row above actions instead of covering them. Appearance choices are directly available under More, separately from the token inspector. Short screens retain the author and project purpose in a scrollable reader.
+
+The current card uses one continuous Primer surface, one purpose heading, one supporting description and an original three-step conceptual diagram. It is not a screenshot from the project. Technology is plain text, detailed audience/features remain in Details, and the real repository identity appears once in the black footer.

@@ -1,3 +1,4 @@
+import type {IconName} from './Icon';
 // Editorial text covers, not screenshots or claimed live product output.
 export const covers: Record<string, {heading:string; steps:[string,string,string]}> = {
   localsend:{heading:'局域网内\n跨设备传文件',steps:['选择文件','发现设备','直接传送']},
@@ -12,4 +13,9 @@ export const covers: Record<string, {heading:string; steps:[string,string,string
   hoppscotch:{heading:'在浏览器里\n测试 API',steps:['构建请求','查看响应','管理集合']},
   appflowy:{heading:'笔记与项目\n组织成工作空间',steps:['文档','数据视图','项目']},
   calcom:{heading:'共享可用时间\n让对方预约',steps:['可用时间','预约链接','日历']},
+};
+
+// Original conceptual diagrams. These are not screenshots from the products.
+export const coverIcons: Record<string,[IconName,IconName,IconName]> = {
+localsend:['file','devices','arrowRight'],excalidraw:['image','nodes','user'],bruno:['file','terminal','fork'],openwebui:['nodes','database','chat'],immich:['cloud','calendar','image'],plane:['check','calendar','explore'],pocketbase:['database','user','file'],flowise:['nodes','code','database'],twenty:['user','layout','explore'],hoppscotch:['code','terminal','repo'],appflowy:['file','layout','check'],calcom:['calendar','share','check']
 };

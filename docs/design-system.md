@@ -24,7 +24,7 @@ Sources: [Primer color reference](https://primer.style/product/primitives/color/
 - Bottom navigation on all screen sizes, supporting icon plus short label. No discovery header.
 - Consistent 24px outlined SVG icons, 1.8px stroke. Icon-only actions have accessible labels and title tooltips.
 - 48px minimum secondary targets; labeled primary decisions are 56px high.
-- Cover name 25/32px; purpose 40/52px; body 14/24px. Short screens reduce headline size before making the content reader scroll.
+- Purpose 34/46px; repository 17/24px; body 15/27px; metadata 13/22px. Short screens reduce headline size before making the content reader scroll.
 - State layers: hover 8%, pressed 12%, disabled 38%. Keyboard focus has a 3px outline in addition to state color.
 - 200ms standard easing cubic-bezier(.2,0,0,1), disabled under prefers-reduced-motion. This uses established M3 web tokens, not the newer Expressive spring system.
 
@@ -42,6 +42,10 @@ No top header, Gither logo, search bar, filter row, sorting row or page heading 
 
 ## Polaroid identity revision
 
-A 2px #010409 frame wraps three sides; a 164px black identity footer creates the wider bottom border (148px/136px on shorter screens). The footer includes genuine GitHub organization/avatar images, owner/repository syntax, Star/Fork icon counts and a visible snapshot date. Missing images show a labeled initial fallback. The content area uses semantic Primer colors in every mode: white light surfaces and genuinely dark dark-mode surfaces. Code rain has 10% overall opacity with a 20–26s cycle behind the editorial text cover, and stops under reduced-motion. It is decorative, not actual repository code or an agent status. The cover is explicitly labeled and is not a product screenshot. A fixed 32px live-status row sits between the card and primary actions, preventing feedback overlap.
+A 2px #010409 frame wraps three sides; a black identity footer with 124px minimum height creates the wider bottom border (120px on shorter screens). It grows if repository text wraps. The footer includes genuine GitHub organization/avatar images, owner/repository syntax, Star/Fork icon counts and a visible snapshot date. Missing images show a labeled initial fallback. The content area uses semantic Primer colors in every mode: one continuous muted surface (#f6f8fa / #151b23) across cover and summary. Code rain has 6% overall opacity with a 20–26s cycle behind the editorial text cover, and stops under reduced-motion. It is decorative, not actual repository code or an agent status. The cover is explicitly labeled and is not a product screenshot. A fixed 32px live-status row sits between the card and primary actions, preventing feedback overlap.
 
 iPhone 16 Pro Max layout target is 440×956 CSS pixels (physical screen 1320×2868, scale3). Sources: https://support.apple.com/en-us/121032 and https://www.ios-resolution.com/. Browser screenshots emulate only the logical full-screen rectangle; they do not claim real iPhone hardware, Safari chrome, hardware DPR3, or Dynamic Island simulation.
+
+## Visual consolidation
+
+The duplicated top project name, separated white summary panel, tag pills and repeated audience sentence were removed from the front card. Repository identity remains in the footer; full audience/features remain in Details. A labeled original three-step functional diagram presents the existing example’s purpose with consistent outlined icons. It does not resemble a fabricated product screenshot or claim live output. The description sits22px below the purpose heading. Metadata uses12–13px text; the dated snapshot uses11px (10px on narrow screens), with a48px link target. Identity/avatar40px, details48px and decision56px targets remain accessible. The footer is auto-height with a minimum, not a clipping fixed height.

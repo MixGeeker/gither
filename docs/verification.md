@@ -5,7 +5,7 @@
 - Node.js 24.22.1.
 - TypeScript CLI reports 7.0.2, pinned exactly.
 - `npm run check`: strict type checking passed.
-- `npm test`: 37/37 current tests passed. Earlier milestone results below are historical.
+- `npm test`: 38/38 current tests passed. Earlier milestone results below are historical.
 - Semantic foreground/muted text colors meet a 4.5:1 contrast ratio against each theme background.
 - `npm run build`: Vite 8.3.6 production build passed.
 
@@ -79,3 +79,12 @@ No live ingestion, account synchronization, backend, D1, or local Agent connecti
 - Compact314×683 viewport has no page overflow. Author remains visible; description and intended audience remain in the keyboard-scrollable reader. End scroll exposes Details while leaving the identity footer/actions fixed.
 - LocalSend avatar loaded at naturalWidth128. Existing metadata snapshots remain unchanged and visibly dated2026-11-05.
 - No application-origin console error observed. Browser-extension metadata errors are unrelated. Physical touch/Safari, Dynamic Island, hardware DPR3 and device safe-area behavior remain untested.
+
+## Visual consolidation follow-up (2026-11-05)
+
+- Strict TS7 check, all38 automated tests and production build passed. New source contract checks enforce one purpose heading, plain technology text, conceptual-diagram provenance and flexible compact identity area.
+- Real cloud-browser440×956 CSS viewport; document440×956, no page overflow. Card416×760 at(12,12). Identity footer124px, reduced from164px. Reader633px with no internal scrolling at this size. Cover and summary have identical computed backgrounds in light(#f6f8fa) and dark(#151b23).
+- New light/dark screenshots show the same LocalSend sample. These simulate the iPhone16ProMax logical rectangle; they are not real Safari, hardware-DPR3 or Dynamic Island captures.
+- Save/Undo, search for OpenWebUI, Details, pointer left-swipe/Undo and appearance switching passed. No application-origin console error was observed.
+- At314×683, OpenWebUI identity and dated metrics remain visible; footer120px. End scroll exposes Details within the reader (bottom361px, reader bottom377px). Document has no overflow. Details retains full purpose, target audience and features.
+- Details, source link, Undo and Share targets are48px high; primary decisions56px. Real cached avatar remains128px. No live data, OAuth, backend or preference-learning changes were made.

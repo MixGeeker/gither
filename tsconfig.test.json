@@ -10,7 +10,8 @@
     "strict": true,
     "skipLibCheck": true,
     "outDir": ".test-dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "jsx": "react-jsx"
   },
   "include": [
     "src/state.ts",
