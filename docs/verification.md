@@ -5,7 +5,7 @@
 - Node.js 24.22.1.
 - TypeScript CLI reports 7.0.2, pinned exactly.
 - `npm run check`: strict type checking passed.
-- `npm test`: 9/9 state and data tests passed.
+- `npm test`: 37/37 current tests passed. Earlier milestone results below are historical.
 - Semantic foreground/muted text colors meet a 4.5:1 contrast ratio against each theme background.
 - `npm run build`: Vite 8.3.6 production build passed.
 
@@ -67,3 +67,15 @@ No live ingestion, account synchronization, backend, D1, or local Agent connecti
 - Bruno avatar rendered with naturalWidth128 from verified local GitHub avatar. Star/Fork counts match dated official API metadata; visible snapshot date and source link included.
 - Decorative code-rain strip is separated from text/identity; reduced-motion has a static fallback.
 - 31 automated tests and strict TypeScript 7 production build pass. PWA precaches the 12 verified public avatars alongside the app shell (21 static paths total); auth and private APIs remain excluded.
+
+## Current card / interaction repair (2026-11-05)
+
+- Strict TypeScript 7 check, all 37 automated tests and production build pass. Tests cover exact search/discovery counts, filtered replay and undo, sample cover coverage, feedback placement and retained short-screen information.
+- Actual cloud Chromium logical viewport: 440×956. Document scroll dimensions equal the viewport. Card bounds x12/y12, width416/height760 (79.5% of screen height). Black identity footer164px. Feedback occupies y772–804; actions y804–884; navigation begins at884. No action overlap.
+- Light and dark screenshots captured from this real browser viewport. Dark summary is rgb(13,17,23), cover rgb(21,27,35), using Primer semantics. This remains a layout simulation, not real iPhone/Safari testing.
+- Save/Undo, keyboard Left/Z, pointer left-swipe/Undo, labeled Details and direct appearance controls verified in the browser.
+- Saved LocalSend search shows one total match and zero to discover; disabled discovery button and “view all one” produce consistent results, including saved state.
+- Dismissed-only filtered view offers replay; replay restores the matching card; Z restores the previous dismissed state; another Z restores the original card. Clearing filters returns all12.
+- Compact314×683 viewport has no page overflow. Author remains visible; description and intended audience remain in the keyboard-scrollable reader. End scroll exposes Details while leaving the identity footer/actions fixed.
+- LocalSend avatar loaded at naturalWidth128. Existing metadata snapshots remain unchanged and visibly dated2026-11-05.
+- No application-origin console error observed. Browser-extension metadata errors are unrelated. Physical touch/Safari, Dynamic Island, hardware DPR3 and device safe-area behavior remain untested.

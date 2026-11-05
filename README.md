@@ -33,7 +33,7 @@ The private Sites preview, when published, is separate from the user's own Cloud
 
 ## Design tokens
 
-`src/data.ts` exports all three semantic token sets plus shared spacing, motion, breakpoint, and interaction values. Theme color values are applied directly as CSS variables by `src/App.tsx`; `src/styles.css` implements the Material 3-inspired layout. Respect `prefers-reduced-motion`; keyboard and button alternatives are provided for swipe gestures.
+`src/data.ts` exports all three semantic token sets plus shared spacing, motion, breakpoint, and interaction values. Theme color values are applied directly as CSS variables by `src/App.tsx`; `src/styles.css` and `src/card-refinement.css` implement the Material 3-inspired layout. Respect `prefers-reduced-motion`; keyboard and button alternatives are provided for swipe gestures.
 
 ## Data and limitations
 
@@ -49,10 +49,10 @@ Scheduled trigger → GitHub/Show HN source adapters → queue → normalize and
 - Build-time service worker caches only the app shell and bundled sample data. Auth, callbacks, sessions, tokens and private APIs are explicitly excluded. Updates require the user to choose the update button.
 - Project links open that project. Shared-list links contain only explicitly selected project IDs and a title; no favorites are shared by default or automatically imported by the recipient.
 - Native system sharing when supported; copy-link and 1200×1500 PNG card download fallbacks. Generated links retain the host's access policy; a private preview does not become public because a link is shared.
-- Login/register UI calls the real same-origin auth status endpoint and stays unavailable when no backend is connected. No fake login or password collection.
+- Login remains disabled at the user’s request. No visible login/register entry, runtime auth request or password collection.
 - Separate Better Auth 1.7.17 + native D1 Worker foundation, with reviewed migration, provider security controls and local workerd/D1 tests. It is NOT deployed or configured with real OAuth credentials. OAuth first login can register an account once configured; email/password remains disabled pending verified email delivery.
 
-Commands: `npm run check`, `npm run auth:check`, `npm test` (31 checks), `npm run build`, `npm run auth:smoke`. The last command only dry-bundles and tests locally; it does not deploy.
+Commands: `npm run check`, `npm run auth:check`, `npm test` (37 checks), `npm run build`, `npm run auth:smoke`. The last command only dry-bundles and tests locally; it does not deploy.
 
 See [auth setup and security](docs/auth-backend.md) and [phase-two boundaries](docs/phase-two.md).
 
@@ -65,3 +65,9 @@ OAuth implementation is paused at the user's request. Google/GitHub login has no
 The discovery screen is card-first with no app header or logo. Search/filter and More are bottom-navigation sheets; the large card, primary swipe actions and navigation fit a phone viewport with safe-area padding.
 
 Cards now use a black Polaroid frame with a wider GitHub identity footer, genuine repository-owner avatars and dated Star/Fork counts. `src/github-metadata.json` and `public/avatars/provenance.json` record official source URLs and collection time. Counts are snapshots, not live. The code-rain graphic is decorative, not repository source or agent activity, and becomes static under reduced motion. The Cal.com sample now links to the canonical `calcom/cal.diy` repository after a verified redirect.
+
+## Card and interaction refinement
+
+Project purpose is presented as an explicitly labeled editorial text cover, not a fabricated product screenshot. Dark mode uses semantic dark surfaces throughout. The black identity footer is 164px high on tall phones, with narrower responsive variants. Code rain is a low-opacity background and respects reduced motion.
+
+Search distinguishes all matching projects from the remaining discovery queue. “View all” includes saved and dismissed matches. Replay restores only the dismissed matches under the current filters and is undoable. Feedback occupies a fixed row above actions instead of covering them. Appearance choices are directly available under More, separately from the token inspector. Short screens retain the author and project purpose in a scrollable reader.

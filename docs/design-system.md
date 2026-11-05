@@ -20,11 +20,11 @@ Sources: [Primer color reference](https://primer.style/product/primitives/color/
 
 ## Material 3 interpretation
 
-- 16px cards, 28px dialogs, 8px chips, pill buttons and segmented theme controls.
-- Bottom navigation on phones, supporting icon plus short label. Desktop navigation stays in the app bar.
+- 28px cards and dialogs, 8px chips, pill buttons and segmented theme controls.
+- Bottom navigation on all screen sizes, supporting icon plus short label. No discovery header.
 - Consistent 24px outlined SVG icons, 1.8px stroke. Icon-only actions have accessible labels and title tooltips.
-- 48px targets generally; compact header actions are 44×48px. Buttons enlarge M3's 40px visual baseline for touch access.
-- Desktop title 24/32; project title 24/32; body 14/24. Compact phone card title 22/28, descriptive text 13/22, explicitly adapted to content density.
+- 48px minimum secondary targets; labeled primary decisions are 56px high.
+- Cover name 25/32px; purpose 40/52px; body 14/24px. Short screens reduce headline size before making the content reader scroll.
 - State layers: hover 8%, pressed 12%, disabled 38%. Keyboard focus has a 3px outline in addition to state color.
 - 200ms standard easing cubic-bezier(.2,0,0,1), disabled under prefers-reduced-motion. This uses established M3 web tokens, not the newer Expressive spring system.
 
@@ -32,16 +32,16 @@ Official [shape](https://github.com/material-components/material-web/blob/main/t
 
 ## Content rules
 
-No decorative slogans, quotes, project-number ornament, or giant art words. Keep project purpose, technology, functional evidence and essential sample/private/offline states. Icons replace familiar actions, not unclear status. Theme mode changes do not change saved projects. Login remains unavailable until the real backend is configured.
+No decorative slogans, quotes, project-number ornament, or giant art words. Keep project purpose, technology, functional evidence and essential sample/private/offline states. Icons replace familiar actions, not unclear status. Theme mode changes do not change saved projects. Login is disabled; the isolated backend scaffold is not connected.
 
 Accessibility adaptation: Primer dimmed accent #478be6 is below 4.5:1 on #212830. Gither reuses the official dark accent #4493f8 for dimmed text and icon controls to meet normal-text contrast. All colors still come from Primer.
 
 ## Card-first mobile revision
 
-No top header, Gither logo, search bar, filter row, sorting row or page heading appears above the discovery card. Search and sorting open from the bottom navigation. Secondary settings are grouped in More; account entry remains absent. A 28px card fills `100dvh - 176px - safe-area-insets`, approximately 76% of the tested phone viewport. Primary pass/save buttons are 72px, secondary Undo/Share 48px. The 72px bottom navigation adds the device bottom safe area. The page declares viewport-fit=cover. Project identity and functional evidence remain inside the card, with sample-data status retained.
+No top header, Gither logo, search bar, filter row, sorting row or page heading appears above the discovery card. Search and sorting open from the bottom navigation. Secondary settings are grouped in More; account entry remains absent. A 28px card fills `100dvh - 196px - safe-area-insets`, approximately 80% of the 440×956 phone viewport. Primary pass/save buttons are 56px tall, secondary Undo/Share 48px. The 72px bottom navigation adds the device bottom safe area. The page declares viewport-fit=cover. Project identity and functional evidence remain inside the card, with sample-data status retained.
 
 ## Polaroid identity revision
 
-A 2px #010409 frame wraps three sides; a 116px black identity footer creates the wider bottom border. The footer includes genuine GitHub organization/avatar images, owner/repository syntax, Star/Fork icon counts and a visible snapshot date. Missing images show a labeled initial fallback. The bright content area uses white, Primer blue and pale blue in both appearance modes. Code rain occupies its own 120px lower visual strip, never overlays readable project information, and stops under reduced-motion. It is decorative, not actual repository code.
+A 2px #010409 frame wraps three sides; a 164px black identity footer creates the wider bottom border (148px/136px on shorter screens). The footer includes genuine GitHub organization/avatar images, owner/repository syntax, Star/Fork icon counts and a visible snapshot date. Missing images show a labeled initial fallback. The content area uses semantic Primer colors in every mode: white light surfaces and genuinely dark dark-mode surfaces. Code rain has 10% overall opacity with a 20–26s cycle behind the editorial text cover, and stops under reduced-motion. It is decorative, not actual repository code or an agent status. The cover is explicitly labeled and is not a product screenshot. A fixed 32px live-status row sits between the card and primary actions, preventing feedback overlap.
 
 iPhone 16 Pro Max layout target is 440×956 CSS pixels (physical screen 1320×2868, scale3). Sources: https://support.apple.com/en-us/121032 and https://www.ios-resolution.com/. Browser screenshots emulate only the logical full-screen rectangle; they do not claim real iPhone hardware, Safari chrome, hardware DPR3, or Dynamic Island simulation.
