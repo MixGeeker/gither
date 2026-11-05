@@ -1,0 +1,9 @@
+import type { Project, ThemeId } from './data';
+export interface Snapshot { saved: string[]; dismissed: string[]; }
+export interface AppState extends Snapshot { history: Snapshot[]; theme: ThemeId; }
+export const initialState=():AppState=>({saved:[],dismissed:[],history:[],theme:'editorial'});
+export function sanitizeState(raw:unknown,ids:string[]):AppState{const valid=new Set(ids);const x=raw&&typeof raw==='object'?raw as Partial<AppState>:{};return {saved:Array.isArray(x.saved)?[...new Set(x.saved.filter(id=>valid.has(id)))]:[],dismissed:Array.isArray(x.dismissed)?[...new Set(x.dismissed.filter(id=>valid.has(id)))]:[],history:[],theme:['editorial','playful','terminal'].includes(x.theme??'')?x.theme!:'editorial'};}
+export function decide(state:AppState,id:string,action:'save'|'dismiss'):AppState{const snapshot={saved:[...state.saved],dismissed:[...state.dismissed]};const next={...state,history:[...state.history,snapshot].slice(-50),saved:state.saved.filter(x=>x!==id),dismissed:state.dismissed.filter(x=>x!==id)};next[action==='save'?'saved':'dismissed'].push(id);return next;}
+export function undo(state:AppState):AppState{if(!state.history.length)return state;return {...state,...state.history.at(-1)!,history:state.history.slice(0,-1)};}
+export function filterProjects(projects:Project[],{query='',category='全部',sort='curated'}:{query?:string;category?:string;sort?:string}={}):Project[]{const q=query.trim().toLocaleLowerCase();const result=projects.filter(p=>(category==='全部'||p.category===category)&&(!q||[p.name,p.owner,p.category,p.tagline,p.description,...p.tags].join(' ').toLocaleLowerCase().includes(q)));return sort==='name'?result.sort((a,b)=>a.name.localeCompare(b.name)):result;}
+export function removeSaved(state:AppState,id:string):AppState{return {...state,history:[...state.history,{saved:[...state.saved],dismissed:[...state.dismissed]}].slice(-50),saved:state.saved.filter(x=>x!==id)};}
