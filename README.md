@@ -8,7 +8,7 @@ A responsive, local-first project-discovery prototype. The repository was initia
 - Explicit buttons, keyboard arrows, Z to undo, and touch/pointer support.
 - Saved projects and theme persisted in localStorage; no preference learning.
 - Search by project, purpose, or technology, category filtering, and explicit sorting.
-- Three complete visual systems: Paper & Olive, Electric Crush, After Hours.
+- GitHub Primer light, dark and dimmed color themes with Material Design 3-inspired components.
 - In-app design-token inspector and JSON export.
 - Twelve real open-source projects with clearly labeled static example summaries, not live metrics.
 - Local Agent is a visible future integration, not a connected service.
@@ -33,7 +33,7 @@ The private Sites preview, when published, is separate from the user's own Cloud
 
 ## Design tokens
 
-`src/data.ts` exports all three semantic token sets plus shared spacing, motion, breakpoint, and interaction values. CSS variables in `src/styles.css` implement those styles. Respect `prefers-reduced-motion`; keyboard and button alternatives are provided for swipe gestures.
+`src/data.ts` exports all three semantic token sets plus shared spacing, motion, breakpoint, and interaction values. Theme color values are applied directly as CSS variables by `src/App.tsx`; `src/styles.css` implements the Material 3-inspired layout. Respect `prefers-reduced-motion`; keyboard and button alternatives are provided for swipe gestures.
 
 ## Data and limitations
 
@@ -52,6 +52,12 @@ Scheduled trigger → GitHub/Show HN source adapters → queue → normalize and
 - Login/register UI calls the real same-origin auth status endpoint and stays unavailable when no backend is connected. No fake login or password collection.
 - Separate Better Auth 1.7.17 + native D1 Worker foundation, with reviewed migration, provider security controls and local workerd/D1 tests. It is NOT deployed or configured with real OAuth credentials. OAuth first login can register an account once configured; email/password remains disabled pending verified email delivery.
 
-Commands: `npm run check`, `npm run auth:check`, `npm test` (26 checks), `npm run build`, `npm run auth:smoke`. The last command only dry-bundles and tests locally; it does not deploy.
+Commands: `npm run check`, `npm run auth:check`, `npm test` (28 checks), `npm run build`, `npm run auth:smoke`. The last command only dry-bundles and tests locally; it does not deploy.
 
 See [auth setup and security](docs/auth-backend.md) and [phase-two boundaries](docs/phase-two.md).
+
+## Design update
+
+GitHub Primer color values are reused from official current tokens. The UI uses Material 3 web shape, state and type guidance with a compact mobile layout, icon actions and no decorative slogans. No GitHub/Google brand assets or affiliation are implied. See [design sources and mappings](docs/design-system.md). Legacy theme IDs are retained internally so stored favorites and preferences remain compatible.
+
+OAuth implementation is paused at the user's request. Google/GitHub login has no visible entry point and no runtime requests in the app. `src/AuthPanel.tsx` and `worker/` remain isolated extension scaffolding only, disabled and undeployed.

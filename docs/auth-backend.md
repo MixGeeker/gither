@@ -1,3 +1,5 @@
+> 2026-11-05: Login implementation is paused by user request. There is no account entry point in the shipped frontend. Existing code is retained only as an isolated extension scaffold; do not activate or provision without a new request.
+
 # Authentication backend foundation
 
 ## Current state

@@ -42,3 +42,12 @@ No live ingestion, account synchronization, backend, D1, or local Agent connecti
 - Stopping the preview origin produced curl exit 7; reloading the browser still rendered the cached app and saved count.
 - Unconfigured login and registration display clear unavailable states with disabled provider controls.
 - Full provider consent/token exchange, real email delivery, production D1 and physical PWA installation are not verified.
+
+## GitHub + Material 3 update (2026-11-05)
+
+- Official Primer light/dark/dimmed token sources checked; dimmed small-text accent uses Primer dark accent for >=4.5:1 contrast.
+- 28 tests passed; frontend strict TypeScript 7 and Vite production build passed.
+- Mobile homepage tested in a real resized cloud browser window at 125% zoom (window.innerWidth 400, clientWidth 388, height 726 CSS px). No iframe or mock device rendering. DevTools/device emulation is prohibited by the browser policy, so native phone hardware has not been tested.
+- Page scrollWidth equals clientWidth (388): no horizontal page overflow. Save-action row ends at y641, before bottom navigation begins at y650: all four primary actions are visible on the first screen.
+- Save and Undo verified on the mobile layout; theme changes preserve favorites.
+- Login entry removed at user request. Auth scaffolding remains isolated, disabled and undeployed; no credentials or Cloudflare resources were created.
