@@ -3,23 +3,29 @@ import type {Project} from './data';
 import {covers,coverIcons} from './covers';
 import Icon from './Icon';
 import githubMetadata from './github-metadata.json';
-interface Props {p:Project;remaining:number;onAction:(action:'save'|'dismiss')=>void;onDetail:()=>void;busy:boolean}
+import {decisionForRelease,directionalStrength,exitOffset,type Decision} from './motion';
+export type Entrance='next'|'undo-save'|'undo-dismiss';
+interface Props {p:Project;remaining:number;onAction:(action:Decision)=>void;onDetail:()=>void;busy:boolean;exit?:Decision|null;entrance?:Entrance|null;onDrag?:(strength:number)=>void;reducedMotion?:boolean;preview?:boolean}
 const compact=(n:number)=>new Intl.NumberFormat('en',{notation:'compact',maximumFractionDigits:1}).format(n);
-export default function ProjectCard({p,remaining,onAction,onDetail,busy}:Props){
+export default function ProjectCard({p,remaining,onAction,onDetail,busy,exit=null,entrance=null,onDrag,reducedMotion=false,preview=false}:Props){
   const[drag,setDrag]=useState(0);
   const[avatarFailed,setAvatarFailed]=useState(false);
-  const origin=useRef<{x:number;y:number}|null>(null);
+  const cardRef=useRef<HTMLElement>(null);
+  const[dragging,setDragging]=useState(false);
+  const origin=useRef<{x:number;y:number;lastX:number;lastTime:number;offset:number;velocity:number;locked:boolean}|null>(null);
   const meta=githubMetadata[p.id as keyof typeof githubMetadata];
   const repo=meta?.repositoryUrl.split('/').pop()||p.name;
   const cover=covers[p.id];
-  const reset=()=>{origin.current=null;setDrag(0)};
-  return <article className="project-card" aria-label={`${p.name} 项目`}
-    style={{transform:drag?`translateX(${drag}px) rotate(${drag/24}deg)`:undefined,transition:origin.current?'none':undefined}}
-    onPointerDown={e=>{if((e.target as HTMLElement).closest('button,a')||e.button!==0||busy)return;origin.current={x:e.clientX,y:e.clientY};e.currentTarget.setPointerCapture(e.pointerId)}}
-    onPointerMove={e=>{if(!origin.current)return;const dx=e.clientX-origin.current.x,dy=e.clientY-origin.current.y;if(Math.abs(dy)>Math.abs(dx)&&Math.abs(dy)>12){reset();return}if(Math.abs(dx)>8)setDrag(dx)}}
-    onPointerUp={()=>{if(origin.current&&Math.abs(drag)>82)onAction(drag>0?'save':'dismiss');reset()}} onPointerCancel={reset}>
-    <span className="swipe-label yes" aria-hidden="true" style={{opacity:drag>0?Math.min(drag/82,1):0}}>收藏</span>
-    <span className="swipe-label no" aria-hidden="true" style={{opacity:drag<0?Math.min(-drag/82,1):0}}>略过</span>
+  const reset=()=>{origin.current=null;setDragging(false);setDrag(0);onDrag?.(0)};
+  const target=exit?exitOffset(exit,drag,window.innerWidth,cardRef.current?.offsetWidth||window.innerWidth):drag;
+  const angle=reducedMotion?0:exit?(exit==='save'?12:-12):Math.max(-12,Math.min(12,drag/24));
+  const transform=reducedMotion&&exit?'none':target?`translate3d(${target}px,0,0) rotate(${angle}deg)`:'none';
+  return <article ref={cardRef} className={`project-card swipe-card ${dragging&&!exit?'is-dragging':''} ${exit?'is-exiting':''} ${entrance?`enter-${entrance}`:''}`} aria-label={`${p.name} 项目`}
+    style={{transform,'--return-x':`${exitOffset(entrance==='undo-dismiss'?'dismiss':'save',0,window.innerWidth,cardRef.current?.offsetWidth||window.innerWidth)}px`,'--return-rotation':entrance==='undo-dismiss'?'-12deg':'12deg'} as CSSProperties}
+    onPointerDown={e=>{if(preview||(e.target as HTMLElement).closest('button,a')||e.button!==0||busy)return;origin.current={x:e.clientX,y:e.clientY,lastX:e.clientX,lastTime:e.timeStamp,offset:0,velocity:0,locked:false}}}
+    onPointerMove={e=>{const o=origin.current;if(!o||busy)return;const dx=e.clientX-o.x,dy=e.clientY-o.y;if(!o.locked&&Math.abs(dy)>Math.abs(dx)&&Math.abs(dy)>12){reset();return}if(!o.locked&&Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)){o.locked=true;e.currentTarget.setPointerCapture(e.pointerId);setDragging(true)}if(!o.locked)return;const dt=e.timeStamp-o.lastTime;if(dt>0)o.velocity=(e.clientX-o.lastX)/dt;o.lastX=e.clientX;o.lastTime=e.timeStamp;o.offset=dx;setDrag(dx);onDrag?.(directionalStrength(dx))}}
+    onPointerUp={e=>{const o=origin.current;if(!o)return;const decision=o.locked?decisionForRelease(o.offset,e.timeStamp-o.lastTime<100?o.velocity:0):null;origin.current=null;setDragging(false);if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);if(decision)onAction(decision);else{setDrag(0);onDrag?.(0)}}}
+    onPointerCancel={reset} onLostPointerCapture={()=>{if(origin.current)reset()}}>
     <div className="card-reader" tabIndex={0} aria-label={`${p.name} 项目介绍，可上下滚动`}>
       <section className="word-cover" aria-label="根据项目用途制作的文字封面，不是产品截图">
         <div className="code-rain" aria-hidden="true">{Array.from({length:16},(_,i)=><span key={i} style={{'--column':i,'--fall':`${20+i%7}s`,'--delay':`${-(i*1.7)}s`} as CSSProperties}>{['01{}0101();=>010{}10','git|01<>010010{}[]','1010const{}01=>01','01[]0110return{}'][i%4]}</span>)}</div>

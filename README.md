@@ -52,7 +52,7 @@ Scheduled trigger → GitHub/Show HN source adapters → queue → normalize and
 - Login remains disabled at the user’s request. No visible login/register entry, runtime auth request or password collection.
 - Separate Better Auth 1.7.17 + native D1 Worker foundation, with reviewed migration, provider security controls and local workerd/D1 tests. It is NOT deployed or configured with real OAuth credentials. OAuth first login can register an account once configured; email/password remains disabled pending verified email delivery.
 
-Commands: `npm run check`, `npm run auth:check`, `npm test` (38 checks), `npm run build`, `npm run auth:smoke`. The last command only dry-bundles and tests locally; it does not deploy.
+Commands: `npm run check`, `npm run auth:check`, `npm test` (54 checks), `npm run build`, `npm run auth:smoke`. The last command only dry-bundles and tests locally; it does not deploy.
 
 See [auth setup and security](docs/auth-backend.md) and [phase-two boundaries](docs/phase-two.md).
 
@@ -73,3 +73,11 @@ Project purpose is presented as an explicitly labeled editorial text cover, not 
 Search distinguishes all matching projects from the remaining discovery queue. “View all” includes saved and dismissed matches. Replay restores only the dismissed matches under the current filters and is undoable. Feedback occupies a fixed row above actions instead of covering them. Appearance choices are directly available under More, separately from the token inspector. Short screens retain the author and project purpose in a scrollable reader.
 
 The current card uses one continuous Primer surface, one purpose heading, one supporting description and an original three-step conceptual diagram. It is not a screenshot from the project. Technology is plain text, detailed audience/features remain in Details, and the real repository identity appears once in the black footer.
+
+## Swipe motion
+
+Dragging left/right gradually tints the page with Primer danger/success colors, with a matching icon and “略过/收藏” in the fixed feedback row. A canceled swipe returns both card and background to neutral. Button and keyboard decisions use the same feedback and departure path. Direction is never communicated by color alone.
+
+A distance of 82px commits a decision; a shorter flick requires at least 32px and 0.65px/ms in the same direction. Departure continues beyond the release position, revealing an inert next-card preview, followed by a 240ms entry. Undo returns the restored card from its previous decision side. Page overflow is clipped without disabling vertical card-reader scrolling. Timing and interaction tokens are exposed in the inspector.
+
+Reduced motion removes automatic departure/entry/undo movement and rotation, retaining brief static direction feedback. Direct dragging still follows the pointer. Gesture math and source integration contracts are tested automatically; browser QA uses a 440×956 CSS viewport in desktop Chromium, not a physical iPhone. Any supplied GIF is a sequence of real browser screenshot samples, not a continuous recording or a frame-rate benchmark.

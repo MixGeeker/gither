@@ -1,0 +1,31 @@
+/* Direction feedback stays outside the card; motion never expands the page. */
+html,body{overflow-x:clip}
+#root{position:relative;isolation:isolate;min-height:100dvh;overflow:clip}
+.app-main{position:relative;z-index:1}
+.swipe-backdrop{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.swipe-backdrop>span{position:absolute;inset:0;transition:opacity 260ms cubic-bezier(.2,0,0,1)}
+.swipe-backdrop.is-dragging>span{transition:none}
+.backdrop-save{background:var(--action)}
+.backdrop-dismiss{background:var(--danger)}
+.view-discover #deck.swipe-deck{position:relative;isolation:isolate;overflow:visible}
+.deck-front,.deck-underlay{position:absolute;inset:0}
+.deck-front{z-index:2}
+.deck-underlay{z-index:1;pointer-events:none;transform-origin:center bottom;transition:transform 320ms cubic-bezier(.2,0,0,1);opacity:.72}
+.deck-underlay .project-card{box-shadow:none}
+.deck-underlay .code-rain{display:none}
+.swipe-card{transform-origin:center bottom;transition:transform 260ms cubic-bezier(.2,.8,.2,1);backface-visibility:hidden}
+.swipe-card.is-dragging{transition:none;cursor:grabbing;user-select:none}
+.swipe-card.is-exiting{transition:transform 320ms cubic-bezier(.32,0,.67,0);pointer-events:none}
+.swipe-card.enter-next{animation:card-enter 240ms cubic-bezier(.2,.8,.2,1) both}
+.swipe-card.enter-undo-save,.swipe-card.enter-undo-dismiss{animation:card-return 320ms cubic-bezier(.15,.8,.2,1) both}
+.decision-feedback{gap:7px;font-size:13px;font-weight:500}
+.decision-feedback.intent-save,.decision-feedback.intent-dismiss{color:var(--text)}
+.decision-feedback.intent-save svg{color:var(--action)}
+.decision-feedback.intent-dismiss svg{color:var(--danger)}
+@keyframes card-enter{from{transform:scale(.975)}to{transform:scale(1)}}
+@keyframes card-return{from{transform:translate3d(var(--return-x),0,0) rotate(var(--return-rotation))}to{transform:translate3d(0,0,0) rotate(0)}}
+@media(prefers-reduced-motion:reduce){
+  .swipe-card,.swipe-card.is-exiting,.swipe-card.enter-next,.swipe-card.enter-undo-save,.swipe-card.enter-undo-dismiss{animation:none!important;transition:none!important}
+  .swipe-backdrop>span{transition:none}
+  .deck-underlay{display:none;transition:none}
+}

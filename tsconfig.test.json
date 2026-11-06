@@ -17,6 +17,7 @@
     "src/state.ts",
     "src/data.ts",
     "src/sharing.ts",
-    "src/covers.ts"
+    "src/covers.ts",
+    "src/motion.ts"
   ]
 }
