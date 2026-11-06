@@ -3,7 +3,7 @@
 ## Automated
 
 - React/frontend, Node server, and retained Cloudflare prototype typechecks passed with TypeScript 7.0.2.
-- Full regression suite: 122 tests passed, zero failures, on the final source snapshot.
+- Full regression suite: 123 tests passed, zero failures, on the final source snapshot.
 - Production self-hosted frontend and Node ESM bundles built successfully.
 - Independent read-only security review found and verified fixes for asynchronous key serialization, profile/scope leakage, MCP scope separation, proposal bounds, human retry/clear recovery, and Docker file handling.
 - Official MCP SDK 1.32.2 completed 23 actual loopback HTTP requests using protocol 2025-11-25. [Detailed reproduction](mcp-sdk-verification.md).

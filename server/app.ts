@@ -16,7 +16,8 @@ async function body(request:Request,keys:string[]){
  if(!value||typeof value!=='object'||Array.isArray(value)||Object.keys(value).some(k=>!keys.includes(k)))fail('INVALID_FIELDS',400);
  return value as Record<string,unknown>;
 }
-function toUiProject(p:ProjectCard){const parts=p.canonicalRepository.split('/');return{id:p.id,name:p.title,owner:parts[0]+' / '+parts[1],category:p.tags[0]||'项目',tagline:p.purpose,description:p.description,tags:p.tags,url:p.repositoryUrl,use:p.useCase,points:p.capabilities,art:p.title,symbol:'',bg:'#f6f8fa',ink:'#0969da',card:{capabilities:p.capabilities,useCase:p.useCase},metadata:{repositoryUrl:p.repositoryUrl,ownerLogin:parts[0],...(p.stars===undefined?{}:{stars:p.stars})},evidence:p.evidence};}
+// Candidate statistics lack a dated verified metric source in this schema; do not present them as current.
+function toUiProject(p:ProjectCard){const parts=p.canonicalRepository.split('/');return{id:p.id,name:p.title,owner:parts[0]+' / '+parts[1],category:p.tags[0]||'项目',tagline:p.purpose,description:p.description,tags:p.tags,url:p.repositoryUrl,use:p.useCase,points:p.capabilities,art:p.title,symbol:'',bg:'#f6f8fa',ink:'#0969da',card:{capabilities:p.capabilities,useCase:p.useCase},metadata:{repositoryUrl:p.repositoryUrl,ownerLogin:parts[0]},evidence:p.evidence};}
 
 export async function createApplication(options:ApplicationOptions){
  const {db}=options;const auth:AuthService|null=options.secret?await createAuthService({db,origin:options.origin,secret:options.secret,...(options.allowLocalhost===undefined?{}:{allowLocalhost:options.allowLocalhost})}):null;

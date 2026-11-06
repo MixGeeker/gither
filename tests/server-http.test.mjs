@@ -82,3 +82,5 @@ test('proposal list and clear are isolated human-session operations',async()=>{c
  r=await f.app.handler(req('/api/me/proposals','DELETE',{},{cookie:f.cookie}));assert.deepEqual(await r.json(),{deleted:1});
  assert.equal(f.app.pool.getProposals(f.owner.id).length,0);
 }finally{f.close()}});
+
+test('runtime cards do not display undated candidate star claims',async()=>{const source=await readFile(new URL('../server/app.ts',import.meta.url),'utf8');assert.doesNotMatch(source,/stars:p\.stars/)});
