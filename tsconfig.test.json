@@ -18,6 +18,8 @@
     "src/data.ts",
     "src/sharing.ts",
     "src/covers.ts",
-    "src/motion.ts"
+    "src/motion.ts",
+    "src/project-examples.ts",
+    "src/catalog.ts"
   ]
 }

@@ -1,0 +1,9 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';
+import {decodeCatalog} from '../.test-dist/catalog.js';import {projectExamples} from '../.test-dist/project-examples.js';
+const metadata=JSON.parse(readFileSync(new URL('../src/github-metadata.json',import.meta.url),'utf8'));
+const fixture=()=>({projects:projectExamples.map(project=>({project,metadata:metadata[project.id]}))});
+test('reviewed catalog decoder accepts all three source-backed projects',()=>{const result=decodeCatalog(fixture());assert.equal(result.projects.length,3);assert.equal(result.metadata.dsbot.stars,189)});
+test('reviewed catalog decoder accepts truly empty results without samples',()=>{assert.deepEqual(decodeCatalog({projects:[]}),{projects:[],metadata:{}})});
+test('reviewed catalog decoder rejects unknown IDs and duplicate cards',()=>{const x=fixture();x.projects.push(x.projects[0]);assert.throws(()=>decodeCatalog(x));const y=structuredClone(fixture());y.projects[0].project.id='unknown';assert.throws(()=>decodeCatalog(y))});
+test('reviewed catalog decoder rejects unsafe links and incomplete identity',()=>{for(const field of ['url','metadataApiSource','ownerLogin']){const x=structuredClone(fixture());if(field==='url')x.projects[0].project.url='javascript:alert(1)';else x.projects[0].metadata[field]=field==='ownerLogin'?{}:'javascript:alert(1)';assert.throws(()=>decodeCatalog(x))}});
+test('authenticated production data path fails closed rather than falling back to samples',()=>{const s=readFileSync(new URL('../src/Root.tsx',import.meta.url),'utf8');assert.match(s,/VITE_SELF_HOSTED/);assert.match(s,/!requiredSelfHosted/);assert.match(s,/gate.kind==='ready'/);const live=readFileSync(new URL('../src/SelfHostedApp.tsx',import.meta.url),'utf8');assert.match(live,/\/api\/projects/);assert.doesNotMatch(live,/projectExamples|defaultProjects/)});

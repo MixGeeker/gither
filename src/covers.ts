@@ -1,6 +1,9 @@
 import type {IconName} from './Icon';
 // Editorial text covers, not screenshots or claimed live product output.
 export const covers: Record<string, {heading:string; steps:[string,string,string]}> = {
+  dsbot:{heading:'Bot 团队远程控制',steps:['连接主机','查看任务','审批操作']},
+  harness:{heading:'AI Agent 运行环境',steps:['选择仓库','提出问题','阅读说明']},
+  ombre:{heading:'Agent 长期情绪记忆',steps:['写入背景','接入 MCP','按需检索']},
   localsend:{heading:'局域网内\n跨设备传文件',steps:['选择文件','发现设备','直接传送']},
   excalidraw:{heading:'手绘白板\n把想法画清楚',steps:['图形','连线','协作']},
   bruno:{heading:'API 请求\n跟着 Git 走',steps:['本地集合','调试接口','版本管理']},
@@ -17,5 +20,6 @@ export const covers: Record<string, {heading:string; steps:[string,string,string
 
 // Original conceptual diagrams. These are not screenshots from the products.
 export const coverIcons: Record<string,[IconName,IconName,IconName]> = {
+dsbot:['devices','terminal','check'],harness:['repo','chat','code'],ombre:['database','nodes','search'],
 localsend:['file','devices','arrowRight'],excalidraw:['image','nodes','user'],bruno:['file','terminal','fork'],openwebui:['nodes','database','chat'],immich:['cloud','calendar','image'],plane:['check','calendar','explore'],pocketbase:['database','user','file'],flowise:['nodes','code','database'],twenty:['user','layout','explore'],hoppscotch:['code','terminal','repo'],appflowy:['file','layout','check'],calcom:['calendar','share','check']
 };

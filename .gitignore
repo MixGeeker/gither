@@ -9,3 +9,13 @@ dist/
 !.dev.vars.example
 .wrangler/
 .auth-dist/
+
+.server-dist/
+.catalog-dist/
+.env
+.env.*
+!.env.example
+data/
+secrets/
+*.db
+*.db-*

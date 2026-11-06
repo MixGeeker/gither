@@ -1,0 +1,25 @@
+services:
+  app:
+    build: .
+    image: gither:selfhost
+    restart: unless-stopped
+    init: true
+    environment:
+      APP_ORIGIN: ${APP_ORIGIN:-http://127.0.0.1:3000}
+      HOST: 0.0.0.0
+      PORT: 3000
+      GITHER_DATA_DIR: /data
+    ports:
+      - '127.0.0.1:3000:3000'
+    volumes:
+      - gither-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    stop_grace_period: 20s
+volumes:
+  gither-data:

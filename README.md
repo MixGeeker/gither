@@ -1,83 +1,63 @@
 # Gither
 
-A responsive, local-first project-discovery prototype. The repository was initially empty and this implementation initializes it from scratch.
+Phone-first GitHub project discovery: swipe to save or dismiss, read concrete capabilities/use cases, and control a personal discovery pool. React 19.3.1 + TypeScript **7.0.2** + Vite 8.3.6; production self-hosted backend uses Node 24, SQLite and Better Auth 1.7.17. Versions are pinned.
 
-## Features
+## Self-host with Docker
 
-- One-card project discovery: swipe left to pass, swipe right to save.
-- Explicit buttons, keyboard arrows, Z to undo, and touch/pointer support.
-- Saved projects and theme persisted in localStorage; no preference learning.
-- Search by project, purpose, or technology, category filtering, and explicit sorting.
-- GitHub Primer light, dark and dimmed color themes with Material Design 3-inspired components.
-- In-app design-token inspector and JSON export.
-- Twelve real open-source projects with clearly labeled static example summaries, not live metrics.
-- Local Agent is a visible future integration, not a connected service.
+```sh
+./scripts/deploy.sh
+```
 
-## Stack
+This user-run command builds the image, securely prompts for the first owner's password locally, then starts the app at `http://127.0.0.1:3000`. Docker Engine + Compose and an interactive terminal are required. No default password, real user, or API/MCP key is created automatically. Subsequent runs preserve the existing owner. Public HTTPS requires your domain/DNS and `./scripts/deploy.sh --https` after configuring `.env`.
 
-React 19.3.1, TypeScript 7.0.2 (stable), Vite 8.3.6, and CSS custom properties. Exact versions are pinned in package.json and package-lock.json. There is no account database, analytics, or backend. Sample data and design tokens are in `src/data.ts`; pure state logic is in `src/state.ts`; the UI is in `src/App.tsx`.
+**Validation boundary:** the development cloud computer has no Docker/Podman/BuildKit engine. Docker configuration is source-reviewed, but the image has not been built or run there. The production Node runtime, authentication, HTTP, pool and MCP flows have separate local tests. See [deployment, backup and recovery](docs/docker-selfhost.md).
 
-## Run
+## What is implemented
 
-Run `npm ci`, then `npm run dev`. For a production bundle run `npm run build`; deploy the resulting `dist` directory. Node.js 24.22.1 was used for verification.
+- GitHub Primer light/dark/dimmed colors, M3-inspired components, black Polaroid repository frame, accessible swipe/buttons/keyboard and undo. Latest sample cards use direct capability descriptions and concrete scenarios, not slogans or nested illustrations.
+- Single-owner password login and server-backed favorites/decisions. Closed registration; Google/GitHub social login remains disabled. HttpOnly sessions, exact-origin checks, password throttling, local recovery and session/key revocation.
+- Separate API and MCP key audiences, explicit scopes, expiry, hash-only storage, one-time display and password reauthentication for key management.
+- Human-configured pool threshold and candidate batch target. Defaults: below **30 available undecided projects** queues one collection job for **60 candidate assessments**. This is not a 30-project capacity limit or a guarantee of 60 approved projects.
+- External-Agent job claims, leases, heartbeat, idempotent submissions, canonical repository deduplication across tasks, bounded failure/backoff, and human retry. Pending candidates are not admitted automatically; human review publishes immutable snapshots.
+- Versioned human topics, sources, exclusions and flavor percentages, including exploration. Jobs freeze rules/profile/feedback and integer allocation guidance. Explicit human preferences outrank aggregate feedback. One dismissal does not ban a topic; undo removes its contribution.
+- Authenticated MCP onboarding resource/prompt, schema-defined tools and scoped writes. Agents can submit candidates and propose plans/subscriptions, but cannot publish, change human rules, forge likes or administer accounts.
 
-## Verify
+The app **queues** collection tasks. It does not deploy or schedule the external Agent, execute third-party repository code, or pretend a queued task has already run. The three sample projects are sourced editorial examples, not measured third-party outputs or real user feedback.
 
-Run `npm run check` for strict TypeScript 7 validation, `npm test` for the complete state/data/security test suite, and `npm run build` for the production bundle. `npx tsc --version` reports 7.0.2.
+## MCP
 
-## Deploy to Cloudflare Pages
+Use `/mcp` with an MCP-audience Bearer key configured securely in the client. Discover `gither://onboarding`, `gither_collector_onboarding`, and `tools/list` before working. The implemented compatibility target is explicitly **MCP 2025-11-25**, JSON Streamable HTTP; no claim of latest-protocol or universal client compatibility is made. See [collector workflow and scopes](docs/mcp-collector.md).
 
-Use this repository as the source, choose Vite, set the build command to `npm run build`, and set the output directory to `dist`. This static prototype does not require Workers or D1. A future real search integration will need an authenticated backend or a securely paired local agent; do not expose local agent ports publicly.
+Machine REST endpoints are under `/api/v1/*` and require an API-audience key. Human settings, review, decisions and key management are session-only `/api/me/*`. No credential belongs in a URL, repository, prompt, browser localStorage or application log.
 
-The private Sites preview, when published, is separate from the user's own Cloudflare account. `.openai/hosting.json` configures that preview only.
+## Development and tests
 
-## Design tokens
+```sh
+npm ci
+npm run check
+npm run server:check
+npm test
+npm run selfhost:build
+```
 
-`src/data.ts` exports all three semantic token sets plus shared spacing, motion, breakpoint, and interaction values. Theme color values are applied directly as CSS variables by `src/App.tsx`; `src/styles.css` and `src/card-refinement.css` implement the Material 3-inspired layout. Respect `prefers-reduced-motion`; keyboard and button alternatives are provided for swipe gestures.
+`npm run dev` serves the static design demo. `npm run build` produces that demo only, without account protection or private backend data. **Do not deploy the static demo as if it were the authenticated application.** Docker runs `selfhost:build`, whose frontend fails closed when its API is unavailable.
 
-## Data and limitations
+For isolated browser QA, `scripts/preview-selfhost.mjs` runs the real application against a disposable in-memory database with a clearly synthetic account. It is not copied into the Docker runtime image and refuses production mode. It is not a production authentication shortcut.
 
-Favorites stay on the current browser and origin and do not sync across devices. Clearing browser data removes them. Project summaries are illustrative and are not automatically refreshed. Consult official project repositories for current functionality, licenses, and deployment instructions.
+## Cloudflare path
 
-## Future discovery pipeline (not implemented)
+Docker is the self-hosted Node/SQLite path. It does not run on Workers. The `cloudflare/` directory retains a separate, disabled local Workers/D1 prototype with three-source metadata collection and review snapshots. It has no configured cloud database, routes, credentials or production deployment; its legacy MCP is not the new authenticated Docker MCP. [Cloudflare prototype boundaries](docs/cloudflare-local-plan.md).
 
-Scheduled trigger → GitHub/Show HN source adapters → queue → normalize and deduplicate → D1 candidate store → review/publish → read-only search API. An optional local Agent may later search or rerank through a secure pairing flow. None of these services is connected in this prototype; no background discovery or preference learning runs.
+Future Cloudflare deployment requires porting the new auth/pool domain behind Workers/D1 adapters and running those adapter tests. No automatic equivalence or database migration is claimed. The previous private Sites preview is a separate hosting flow and has not been updated by these local changes.
 
-## Phase 2: PWA, sharing, and auth foundation
+## Data and remaining boundaries
 
-- Installable PWA manifest with generated 192/512px icons and an Apple touch icon.
-- Build-time service worker caches only the app shell and bundled sample data. Auth, callbacks, sessions, tokens and private APIs are explicitly excluded. Updates require the user to choose the update button.
-- Project links open that project. Shared-list links contain only explicitly selected project IDs and a title; no favorites are shared by default or automatically imported by the recipient.
-- Native system sharing when supported; copy-link and 1200×1500 PNG card download fallbacks. Generated links retain the host's access policy; a private preview does not become public because a link is shared.
-- Login remains disabled at the user’s request. No visible login/register entry, runtime auth request or password collection.
-- Separate Better Auth 1.7.17 + native D1 Worker foundation, with reviewed migration, provider security controls and local workerd/D1 tests. It is NOT deployed or configured with real OAuth credentials. OAuth first login can register an account once configured; email/password remains disabled pending verified email delivery.
+- First release is one owner per installation, not public multi-user registration or SMTP password recovery. Database queries and keys are owner-isolated and tested; local recovery revokes old sessions/keys.
+- Candidate claims/evidence are untrusted until human review. Unknown metrics remain unknown. Weak similarity does not merge repositories; exact canonical GitHub identity drives deduplication.
+- Flavor allocations guide the external collector; the server does not claim to verify how it searched. Feedback suggestions are transparent aggregates, not hidden rewrites of user preferences.
+- Third-party OAuth, live external-Agent scheduling, broad automatic source collection, third-party Agent app integration, Docker image execution and public TLS remain separately verifiable deployment work.
+- Do not commit `.env`, `.dev.vars`, `/data`, database/WAL files, backups, secrets or generated keys. Back up before upgrades, and perform local recovery after restoring an old database before exposing it.
 
-Commands: `npm run check`, `npm run auth:check`, `npm test` (54 checks), `npm run build`, `npm run auth:smoke`. The last command only dry-bundles and tests locally; it does not deploy.
+## Verified MCP client
 
-See [auth setup and security](docs/auth-backend.md) and [phase-two boundaries](docs/phase-two.md).
-
-## Design update
-
-GitHub Primer color values are reused from official current tokens. The UI uses Material 3 web shape, state and type guidance with a compact mobile layout, icon actions and no decorative slogans. No GitHub/Google brand assets or affiliation are implied. See [design sources and mappings](docs/design-system.md). Legacy theme IDs are retained internally so stored favorites and preferences remain compatible.
-
-OAuth implementation is paused at the user's request. Google/GitHub login has no visible entry point and no runtime requests in the app. `src/AuthPanel.tsx` and `worker/` remain isolated extension scaffolding only, disabled and undeployed.
-
-The discovery screen is card-first with no app header or logo. Search/filter and More are bottom-navigation sheets; the large card, primary swipe actions and navigation fit a phone viewport with safe-area padding.
-
-Cards now use a black Polaroid frame with a wider GitHub identity footer, genuine repository-owner avatars and dated Star/Fork counts. `src/github-metadata.json` and `public/avatars/provenance.json` record official source URLs and collection time. Counts are snapshots, not live. The code-rain graphic is decorative, not repository source or agent activity, and becomes static under reduced motion. The Cal.com sample now links to the canonical `calcom/cal.diy` repository after a verified redirect.
-
-## Card and interaction refinement
-
-Project purpose is presented as an explicitly labeled editorial text cover, not a fabricated product screenshot. Dark mode uses semantic dark surfaces throughout. The black identity footer has a compact 124px minimum height (120px on shorter screens) and can grow for wrapped identities. Code rain is a low-opacity background and respects reduced motion.
-
-Search distinguishes all matching projects from the remaining discovery queue. “View all” includes saved and dismissed matches. Replay restores only the dismissed matches under the current filters and is undoable. Feedback occupies a fixed row above actions instead of covering them. Appearance choices are directly available under More, separately from the token inspector. Short screens retain the author and project purpose in a scrollable reader.
-
-The current card uses one continuous Primer surface, one purpose heading, one supporting description and an original three-step conceptual diagram. It is not a screenshot from the project. Technology is plain text, detailed audience/features remain in Details, and the real repository identity appears once in the black footer.
-
-## Swipe motion
-
-Dragging left/right gradually tints the page with Primer danger/success colors, with a matching icon and “略过/收藏” in the fixed feedback row. A canceled swipe returns both card and background to neutral. Button and keyboard decisions use the same feedback and departure path. Direction is never communicated by color alone.
-
-A distance of 82px commits a decision; a shorter flick requires at least 32px and 0.65px/ms in the same direction. Departure continues beyond the release position, revealing an inert next-card preview, followed by a 240ms entry. Undo returns the restored card from its previous decision side. Page overflow is clipped without disabling vertical card-reader scrolling. Timing and interaction tokens are exposed in the inspector.
-
-Reduced motion removes automatic departure/entry/undo movement and rotation, retaining brief static direction feedback. Direct dragging still follows the pointer. Gesture math and source integration contracts are tested automatically; browser QA uses a 440×956 CSS viewport in desktop Chromium, not a physical iPhone. Any supplied GIF is a sequence of real browser screenshot samples, not a continuous recording or a frame-rate benchmark.
+The official TypeScript MCP SDK 1.32.2 completed 23 real loopback HTTP requests with protocol 2025-11-25, including onboarding, scoped collection and credential failure paths. See [the reproducible report](docs/mcp-sdk-verification.md). This is a client/server interoperability check, not a live external Agent or scheduled collection deployment.

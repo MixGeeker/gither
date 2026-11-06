@@ -1,5 +1,5 @@
 import {useState,useEffect,useRef,useCallback,type CSSProperties,type ReactNode} from 'react';
-import {projects,themes,sharedTokens,type Project,type ThemeId} from './data';
+import {projects as defaultProjects,themes,sharedTokens,type Project,type ThemeId} from './data';
 import ShareDialog from './ShareDialog';
 import Icon from './Icon';
 import ProjectCard,{type Entrance} from './ProjectCard';
@@ -7,8 +7,11 @@ import {motionDurations,type Decision} from './motion';
 import {parseSharedSelection} from './sharing';
 import {registerPwa,type BeforeInstallEvent} from './pwa';
 import {initialState,sanitizeState,decide,undo,filterProjects,removeSaved,discoveryQueue,revisitDismissed,type AppState} from './state';
+import {projectExamples} from './project-examples';
+const exampleMode=new URLSearchParams(window.location.search).has('examples');
+const projects=exampleMode?projectExamples:defaultProjects;
 const themeIds:ThemeId[]=['editorial','playful','terminal'];
-const storageKey='gither-v1';
+const storageKey=exampleMode?'gither-project-examples-v1':'gither-v1';
 const artStyle=(p:Project)=>({'--art-bg':p.bg,'--art-ink':p.ink} as CSSProperties);
 function loadState():AppState{try{return sanitizeState(JSON.parse(localStorage.getItem(storageKey)||'null'),projects.map(p=>p.id))}catch{return initialState()}}
 function Modal({children,onClose,label}:{children:ReactNode;onClose:()=>void;label:string}){const ref=useRef<HTMLDialogElement>(null);useEffect(()=>{ref.current?.showModal();return()=>ref.current?.close()},[]);return <dialog ref={ref} aria-label={label} onCancel={onClose} onClick={e=>{if(e.target===e.currentTarget){const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)onClose()}}}>{children}<button className="dialog-x icon-button" onClick={onClose} aria-label={`关闭${label}`} title="关闭"><Icon name="close"/></button></dialog>}

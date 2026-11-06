@@ -156,5 +156,44 @@
     "metadataApiSource": "https://api.github.com/repos/calcom/cal.diy",
     "originalRepositoryUrl": "https://github.com/calcom/cal.com",
     "redirectNote": "Original calcom/cal.com repository redirects to calcom/cal.diy (repository ID 350360184)."
+  },
+  "dsbot": {
+    "ownerLogin": "QingJ01",
+    "ownerType": "User",
+    "ownerId": 108940482,
+    "avatarUrl": "https://avatars.githubusercontent.com/u/108940482?v=4",
+    "stars": 189,
+    "forks": 13,
+    "fetchedAt": "2026-11-06T12:31:18Z",
+    "repositoryUrl": "https://github.com/QingJ01/DS-Bot-App",
+    "metadataApiSource": "https://api.github.com/repos/QingJ01/DS-Bot-App",
+    "ownerUrl": "https://github.com/QingJ01",
+    "avatar": "/avatars/dsbot.png"
+  },
+  "harness": {
+    "ownerLogin": "deepseek-ai",
+    "ownerType": "Organization",
+    "ownerId": 148330874,
+    "avatarUrl": "https://avatars.githubusercontent.com/u/148330874?v=4",
+    "stars": 274526,
+    "forks": 33541,
+    "fetchedAt": "2026-11-06T12:31:18Z",
+    "repositoryUrl": "https://github.com/deepseek-ai/deepseek-harness",
+    "metadataApiSource": "https://api.github.com/repos/deepseek-ai/deepseek-harness",
+    "ownerUrl": "https://github.com/deepseek-ai",
+    "avatar": "/avatars/harness.png"
+  },
+  "ombre": {
+    "ownerLogin": "P0luz",
+    "ownerType": "User",
+    "ownerId": 276333317,
+    "avatarUrl": "https://avatars.githubusercontent.com/u/276333317?v=4",
+    "stars": 1528,
+    "forks": 960,
+    "fetchedAt": "2026-11-06T12:31:18Z",
+    "repositoryUrl": "https://github.com/P0luz/Ombre-Brain",
+    "metadataApiSource": "https://api.github.com/repos/P0luz/Ombre-Brain",
+    "ownerUrl": "https://github.com/P0luz",
+    "avatar": "/avatars/ombre.png"
   }
 }

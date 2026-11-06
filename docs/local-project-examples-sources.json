@@ -1,0 +1,145 @@
+{
+  "QingJ01/DS-Bot-App": {
+    "readmeSource": "https://github.com/QingJ01/DS-Bot-App/blob/main/README.md",
+    "summary": "独立社区应用，手机与电脑共用会话、模型和工作区；可续接 Bot 团队群聊，逐 Bot 配置模型、MCP、Skills，查看工具结果与处理审批。",
+    "caveats": [
+      "运行 Bot、工具和任务的是主机；使用手机 App 时需要让电脑或服务器保持在线。",
+      "首次需安装匹配插件、配置模型、开启手机连接、扫码并在电脑上批准设备；建议先在同一 Wi-Fi 下连接。",
+      "独立社区项目，不是 DeepSeek 官方产品。",
+      "Android 有发布 APK；iOS 只有源码，目前不提供 IPA。"
+    ],
+    "quotations": [
+      {
+        "quote": "DS Bot App connects your phone to the Bots running on your own DeepSeek Harness (DSH) computer or server.",
+        "section": "Introduction"
+      },
+      {
+        "quote": "Open tool-result cards, approve or reject pending actions",
+        "section": "What you can do"
+      },
+      {
+        "quote": "Keep the computer or server online while using the App.",
+        "section": "Get started"
+      },
+      {
+        "quote": "手机与电脑共用同一套会话、模型和工作区。",
+        "source": "https://github.com/QingJ01/DS-Bot-App/blob/main/README.zh.md"
+      },
+      {
+        "quote": "专属工具结果卡片，允许/拒绝待批准操作",
+        "source": "https://github.com/QingJ01/DS-Bot-App/blob/main/README.zh.md"
+      }
+    ],
+    "fetchedAt": "2026-11-06T12:31:18Z",
+    "stars": 189,
+    "forks": 13,
+    "metadataApiSource": "https://api.github.com/repos/QingJ01/DS-Bot-App",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/108940482?v=4",
+    "scenarioEditorialNote": "卡片核心能力依据官方文档，场景由 Gither 编辑示意，不是第三方实际运行结果。最新审核版不在卡片展示门槛/风险；资料限制仍存于此来源记录。"
+  },
+  "deepseek-ai/deepseek-harness": {
+    "readmeSource": "https://github.com/deepseek-ai/deepseek-harness/blob/master/README.md",
+    "summary": "Agent 运行框架：模型适配器、工具注册表、会话日志与 Agent loop 均为可替换插件；Creator 创造模式支持对话创建插件，支持多种模型提供商。",
+    "caveats": [
+      "模型需先配置；官方快速示例使用 DeepSeek API key，也支持其他服务商。",
+      "‘选择项目 → AI 解释核心模块’应标为场景示意；它是一个官方示例任务，不是内置的一键保证能力。",
+      "开发者预览版，可能出现破坏兼容性的变动；安全文档称未经安全审计，不应视为安全或生产就绪软件。",
+      "Agent 能读写工作区文件、运行命令、委派任务；审批取决于当前权限策略，沙箱与审批不保证完全隔离。"
+    ],
+    "quotations": [
+      {
+        "quote": "DeepSeek Harness (`dsh`) is an open-source agent harness developed by DeepSeek AI.",
+        "section": "README"
+      },
+      {
+        "quote": "Click **Choose workspace**, add the project directory where you started `dsh`, and select it.",
+        "source": "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/index.md",
+        "section": "Choose a workspace"
+      },
+      {
+        "quote": "Summarize this repository and identify its main packages.",
+        "source": "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/index.md",
+        "section": "Run a task"
+      },
+      {
+        "quote": "It has not undergone a security audit and must not be treated as secure or production-ready.",
+        "source": "https://github.com/deepseek-ai/deepseek-harness/blob/master/SAFETY.md",
+        "section": "Experimental status"
+      },
+      {
+        "quote": "including the model adapter, the tool registry, the session log, and the agent loop itself",
+        "source": "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md"
+      },
+      {
+        "quote": "each is replaceable from configuration.",
+        "source": "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md"
+      },
+      {
+        "quote": "让 Agent 创建插件",
+        "source": "https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/client/ui-agent-preset/README.zh.md"
+      }
+    ],
+    "fetchedAt": "2026-11-06T12:31:18Z",
+    "stars": 274526,
+    "forks": 33541,
+    "metadataApiSource": "https://api.github.com/repos/deepseek-ai/deepseek-harness",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/148330874?v=4",
+    "scenarioEditorialNote": "卡片核心能力依据官方文档，场景由 Gither 编辑示意，不是第三方实际运行结果。最新审核版不在卡片展示门槛/风险；资料限制仍存于此来源记录。",
+    "additionalSources": [
+      "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/providers.md",
+      "https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/boot/plugin-manager/README.md"
+    ]
+  },
+  "P0luz/Ombre-Brain": {
+    "readmeSource": "https://github.com/P0luz/Ombre-Brain/blob/main/README.md",
+    "summary": "面向 Claude 或其他 MCP 客户端的长期情绪记忆系统，以兼容 Obsidian 的 Markdown 文件存储记忆，提供关键词/语义检索、情绪坐标和遗忘归档。",
+    "caveats": [
+      "需要部署服务并连接兼容的 MCP 客户端；数据目录必须使用持久磁盘，否则容器重建或休眠重置可能丢失记忆。",
+      "跨对话回忆依赖客户端加载并调用 breath、breath_search 等工具和相应使用配置；不是安装后所有客户端都必然自动回忆。",
+      "官方文档要求把工具使用约定加入 system prompt/custom instructions/项目说明；工具延迟加载存在找不到工具的情形。",
+      "语义服务不可用时可降级为关键词/BM25 检索。",
+      "备份/同步中的原文是明文；情绪标签和第一人称记忆设计不意味着模型具有真实人类情感。",
+      "2026-11-06 再次核验当前 README/INTERNALS：普通 hold 在打标失败时仍保存原文，因此不可继续宣称无模型密钥时一律不能写入。"
+    ],
+    "quotations": [
+      {
+        "quote": "A long-term emotional memory system for Claude (and any MCP client). Tags memories using Russell's valence/arousal coordinates, stores them as Obsidian-compatible Markdown, connects via MCP, with forgetting curve and vector semantic search.",
+        "section": "Introduction"
+      },
+      {
+        "quote": "Ombre Brain 是**有状态**服务——记忆桶是磁盘上的 `.md` 文件 + SQLite 向量库",
+        "section": "Quick Start"
+      },
+      {
+        "quote": "`docs/CLAUDE_PROMPT.md` 是写给 Claude 看的工具使用约定。把它放进 system prompt / custom instructions / Claude Desktop 项目说明里即可。",
+        "section": "给 Claude 的使用指南"
+      },
+      {
+        "quote": "## 第一件事：开口之前先调用 breath()",
+        "source": "https://github.com/P0luz/Ombre-Brain/blob/main/docs/CLAUDE_PROMPT.md",
+        "section": "Client tool usage"
+      },
+      {
+        "quote": "未解决的、情绪强烈的记忆权重更高",
+        "source": "https://github.com/P0luz/Ombre-Brain/blob/main/README.md"
+      },
+      {
+        "quote": "高情绪强度的记忆衰减更慢",
+        "source": "https://github.com/P0luz/Ombre-Brain/blob/main/README.md"
+      },
+      {
+        "quote": "每个记忆桶 = 一个 Markdown 文件 + YAML frontmatter",
+        "source": "https://github.com/P0luz/Ombre-Brain/blob/main/README.md"
+      }
+    ],
+    "fetchedAt": "2026-11-06T12:31:18Z",
+    "stars": 1528,
+    "forks": 960,
+    "metadataApiSource": "https://api.github.com/repos/P0luz/Ombre-Brain",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/276333317?v=4",
+    "scenarioEditorialNote": "卡片核心能力依据官方文档，场景由 Gither 编辑示意，不是第三方实际运行结果。最新审核版不在卡片展示门槛/风险；资料限制仍存于此来源记录。",
+    "additionalSources": [
+      "https://github.com/P0luz/Ombre-Brain/blob/main/docs/INTERNALS.md"
+    ]
+  }
+}

@@ -1,4 +1,5 @@
-export interface Project { id:string; name:string; owner:string; category:string; tagline:string; description:string; tags:string[]; url:string; use:string; points:string[]; art:string; symbol:string; bg:string; ink:string; }
+export interface ProjectMetadata {repositoryUrl:string;ownerLogin:string;avatar?:string;stars?:number;forks?:number;fetchedAt?:string;metadataApiSource?:string;}
+export interface Project { metadata?:ProjectMetadata;card?:{capabilities:string[];useCase:string}; id:string; name:string; owner:string; category:string; tagline:string; description:string; tags:string[]; url:string; use:string; points:string[]; art:string; symbol:string; bg:string; ink:string; }
 export type ThemeId = "editorial" | "playful" | "terminal";
 export const projects: Project[] = [
 {id:'localsend',name:'LocalSend',owner:'localsend / localsend',category:'效率',tagline:'让文件自由流动，不必经过云端。',description:'在同一网络下，把照片、文件和文字直接发给身边的设备。跨平台，保持简单。',tags:['Flutter','Dart','跨平台'],url:'https://github.com/localsend/localsend',use:'适合需要在电脑与手机间分享文件，又不想注册账号的人。',points:['局域网内设备互传文件','覆盖常见桌面与移动系统','官方仓库提供安装与使用说明'],art:'Send.',symbol:'↗',bg:'#e2e7d5',ink:'#4b5b3b'},

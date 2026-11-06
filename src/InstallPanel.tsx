@@ -1,0 +1,12 @@
+import {useEffect,useState} from 'react';
+import {registerPwa,type BeforeInstallEvent} from './pwa';
+export function useInstallation(){
+  const[installEvent,setInstallEvent]=useState<BeforeInstallEvent|null>(null);const[ready,setReady]=useState(false);const[error,setError]=useState(false);const[update,setUpdate]=useState<ServiceWorkerRegistration|null>(null);
+  useEffect(()=>{let live=true;const install=(event:Event)=>{event.preventDefault();if(live)setInstallEvent(event as BeforeInstallEvent)};window.addEventListener('beforeinstallprompt',install);void registerPwa(registration=>{if(live)setUpdate(registration)}).then(registration=>{if(!registration){if(live)setError(true);return}void navigator.serviceWorker.ready.then(()=>{if(live)setReady(true)})}).catch(()=>{if(live)setError(true)});return()=>{live=false;window.removeEventListener('beforeinstallprompt',install)}},[]);
+  return {installEvent,setInstallEvent,ready,error,update};
+}
+export default function InstallPanel({installation}:{installation:ReturnType<typeof useInstallation>}){
+  const[message,setMessage]=useState('');const[busy,setBusy]=useState(false);
+  async function install(){if(!installation.installEvent||busy)return;setBusy(true);try{await installation.installEvent.prompt();const choice=await installation.installEvent.userChoice;installation.setInstallEvent(null);setMessage(choice.outcome==='accepted'?'已交给浏览器安装。':'本次未安装。')}catch{setMessage('安装未完成，请使用浏览器菜单中的安装入口。')}finally{setBusy(false)}}
+  return <><div className="modal-heading"><h2>安装 Gither</h2><p>安装后可独立打开。只缓存应用界面，不缓存账号、密钥、私人项目或收藏 API。</p></div><div className="auth-body"><p className="inline-status" role="status">{installation.ready?'应用界面缓存已准备好。':installation.error?'当前环境暂未准备好应用缓存，请使用受支持的 HTTPS 浏览器。':'正在准备应用界面缓存…'}</p>{installation.update&&<div className="service-callout"><p>有新版本。请先保存表单和新创建的密钥，再刷新更新。</p><button className="secondary" onClick={()=>{navigator.serviceWorker.addEventListener('controllerchange',()=>window.location.reload(),{once:true});installation.update?.waiting?.postMessage('SKIP_WAITING')}}>更新应用</button></div>}{installation.installEvent?<button className="primary" disabled={busy} onClick={()=>void install()}>安装 Gither</button>:<div className="privacy-callout"><strong>使用浏览器的安装入口</strong><p>iPhone / iPad：在 Safari 中点分享，选择「添加到主屏幕」。Android / 桌面：从浏览器菜单选择「安装应用」或「添加到主屏幕」。</p></div>}<p className="auth-note">打开私人内容和提交操作需要联网验证账号。离线只有应用外壳，不会以静态示例替代你的项目池。</p>{message&&<p className="inline-status" role="status">{message}</p>}</div></>;
+}

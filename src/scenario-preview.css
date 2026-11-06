@@ -1,0 +1,13 @@
+/* Text-only capabilities and editorial scenarios. No inner frames, SVG guides or gatekeeping block. */
+.project-card.has-scenario .cover-meta{margin-bottom:22px}
+.project-card.has-scenario .cover-purpose{font-size:30px;line-height:42px;margin-bottom:14px;letter-spacing:-.6px}
+.project-card.has-scenario .project-description{font-size:14px;line-height:25px}
+.scenario-preview{display:flex;flex-direction:column;margin:26px 0 0;padding:0;border:0;border-radius:0;background:none}
+.scenario-preview dl{margin:0}
+.scenario-preview dt{margin:0 0 10px;font-size:12px;line-height:20px;color:var(--muted)}
+.scenario-preview dd{margin:0;font-size:15px;line-height:26px;color:var(--text)}
+.scenario-preview dd+dt{margin-top:26px}
+.scenario-capabilities p{margin:0}
+.scenario-capabilities p+p{margin-top:10px}
+.project-card.has-scenario .card-summary{padding-top:12px;padding-bottom:16px}
+@media(max-height:800px){.project-card.has-scenario .cover-purpose{font-size:28px;line-height:38px}.scenario-preview{margin-top:20px}.scenario-preview dd+dt{margin-top:20px}}
